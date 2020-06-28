@@ -25,6 +25,9 @@ const create = async function (req, res) {
 };
 
 const writeDescription = function (languageCode, abstract, proposal) {
+  // Create folder
+  const dir = "./static/campaigns/1/" + languageCode;
+  fs.mkdirSync(dir, { recursive: true });
   // Handle descripion
   fs.writeFile(
     "./static/campaigns/1/" + languageCode + "/abstract.md",
