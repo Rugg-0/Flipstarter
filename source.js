@@ -283,14 +283,14 @@ class flipstarter {
             (
               (100 * this.countCommittedSatoshis(this.campaign.contributions)) /
               this.countRequestedSatoshis(this.campaign.recipients)
-            ).toFixed(2) + "%";
+            ).toFixed(4) + "%";
           document.getElementById(
             "compaignContributionAmount"
           ).textContent = DOMPurify.sanitize(
             (
               this.countCommittedSatoshis(this.campaign.contributions) /
               SATS_PER_BCH
-            ).toFixed(2)
+            ).toFixed(4)
           );
 
           // .. move the current contribution bar accordingly.
@@ -299,7 +299,7 @@ class flipstarter {
               100 *
               (this.countCommittedSatoshis(this.campaign.contributions) /
                 this.countRequestedSatoshis(this.campaign.recipients))
-            ).toFixed(2) + "%";
+            ).toFixed(4) + "%";
         }
       }
     };
@@ -766,7 +766,7 @@ class flipstarter {
     ).textContent = DOMPurify.sanitize(
       (
         this.countRequestedSatoshis(this.campaign.recipients) / SATS_PER_BCH
-      ).toFixed(2)
+      ).toFixed(4)
     );
   }
 
@@ -919,17 +919,17 @@ class flipstarter {
     }
 
     document.getElementById("campaignContributionBar").style.left =
-      (100 * (committedSatoshis / requestedSatoshis)).toFixed(2) + "%";
+      (100 * (committedSatoshis / requestedSatoshis)).toFixed(4) + "%";
     document.getElementById("campaignContributionBar").style.width =
       (
         100 *
         (await this.inputPercentModifier(event.target.value)) *
         (1 - committedSatoshis / requestedSatoshis)
-      ).toFixed(2) + "%";
+      ).toFixed(4) + "%";
     document.getElementById("donationAmount").textContent =
       (donationAmount / SATS_PER_BCH).toLocaleString() +
       " BCH (" +
-      (this.currencyValue * (donationAmount / SATS_PER_BCH)).toFixed(2) +
+      (this.currencyValue * (donationAmount / SATS_PER_BCH)).toFixed(4) +
       " " +
       this.currencyCode +
       ")";
@@ -1182,10 +1182,10 @@ class flipstarter {
     const backgroundPosition = (
       backgroundMin +
       backgroundMax * (1 - percent)
-    ).toFixed(2);
+    ).toFixed(4);
     const animationLength = 15;
-    const animationDelay = (Math.random() * animationLength).toFixed(2);
-    const contributionAmount = (amount / SATS_PER_BCH).toFixed(2);
+    const animationDelay = (Math.random() * animationLength).toFixed(4);
+    const contributionAmount = (amount / SATS_PER_BCH).toFixed(4);
 
     // Update the data on the copy.
     contributionEntry.querySelector(
