@@ -1,5 +1,6 @@
 // Initialize mutex locking library.
 const asyncMutex = require("async-mutex").Mutex;
+const superagent = require("superagent");
 
 // initialize a revocation event check lock.
 const submissionLock = new asyncMutex();
@@ -404,12 +405,9 @@ const submitContribution = async function (req, res) {
       };
 
       // Calculate the current floor
-      const currentFloor = Math.ceil(
-        (contract.totalContractOutputValue +
-          currentMinerFee -
-          currentCommittedSatoshis) *
-        (await inputPercentModifier(0.75))
-      );
+      // NOTE: Set to $0.90 (allowing 10% for volatility)
+      const usd = await superagent.get("https://api.telr.io/v1/ticker/price/BCH");
+      const currentFloor = (0.9 / usd) * 100000000.0;
 
       // Verify that the current contribution does not undercommit the contract floor.
       if (totalSatoshis < currentFloor) {

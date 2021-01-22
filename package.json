@@ -1,6 +1,6 @@
 {
-  "name": "flipstarter-backend",
-  "version": "0.0.1",
+  "name": "flipstarter-too",
+  "version": "21.1.22",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "marked": "^1.1.1",
     "materialize-css": "^1.0.0",
     "moment": "^2.27.0",
+    "superagent": "^6.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
